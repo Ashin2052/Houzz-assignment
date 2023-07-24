@@ -2,7 +2,39 @@
   padding: 8px;
 }
 
+.mg-8 {
+  margin: 8px;
+}
+
 .mv-8 {
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.tagline {
+  font-size: 16px;
+  color: gold;
+  margin-top: 0 !important;
+}
+
+.description {
+  font-size: 14px;
+}
+
+.spinner {
+  top: 50%;
+  position: fixed;
+}
+
+.op-blur {
+  opacity: 0.3;
+}
+
+.card-shadow {
+  box-shadow: -2px 4px 8px 0px grey;
+}
+
+.card-shadow:hover {
+  cursor: pointer;
+  background: #87cefa29;
 }

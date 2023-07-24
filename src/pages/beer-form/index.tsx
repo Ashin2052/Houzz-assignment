@@ -8,7 +8,7 @@ import { Button, Stack, TextField, Typography } from '@mui/material';
 const validationSchema = yup.object({
   name: yup.string().nullable().min(5).required('Name is required'),
   description: yup.string().nullable().min(10).required('Description is required'),
-  tag_line: yup.string().nullable().min(5).required('Tagline is required'),
+  tagline: yup.string().nullable().min(5).required('Tagline is required'),
   image_url: yup.string().nullable().required('Image is required'),
 });
 
@@ -20,7 +20,7 @@ const BeerForm = ({ onSubmit, onCancel }: IBeerForm) => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      tag_line: '',
+      tagline: '',
       image_url: '',
       description: '',
     },
@@ -56,7 +56,7 @@ const BeerForm = ({ onSubmit, onCancel }: IBeerForm) => {
               fullWidth
               id='name'
               name='name'
-              label='Name'
+              label='Beer name'
               variant={'outlined'}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -66,14 +66,14 @@ const BeerForm = ({ onSubmit, onCancel }: IBeerForm) => {
             <TextField
               fullWidth
               required
-              id='tag_line'
-              name='tag_line'
+              id='tagline'
+              name='tagline'
               label='Genre'
               variant={'outlined'}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              error={formik.touched.tag_line && Boolean(formik.errors.tag_line)}
-              helperText={formik.touched.tag_line && formik.errors.tag_line}
+              error={formik.touched.tagline && Boolean(formik.errors.tagline)}
+              helperText={formik.touched.tagline && formik.errors.tagline}
             />
             <TextField
               fullWidth
@@ -94,7 +94,7 @@ const BeerForm = ({ onSubmit, onCancel }: IBeerForm) => {
             />
             <Stack justifyContent={'end'} direction={'row'} gap={2}>
               <Stack>
-                <Button variant='contained' type='reset' onClick={onCancel}>
+                <Button variant='outlined' type='reset' onClick={onCancel}>
                   Cancel
                 </Button>
               </Stack>

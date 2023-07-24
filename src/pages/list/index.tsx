@@ -10,7 +10,7 @@ import React, {
 import BeerForm from '../beer-form';
 import Box from '@mui/material/Box';
 import BeerCard from '../../components/card';
-import { Button, Grid, Modal, Stack } from '@mui/material';
+import { Button, CircularProgress, Grid, Modal, Stack } from '@mui/material';
 import { fetchBeer, IBEER, IPAGINATION } from '../../services/BeerService';
 
 const modalStyle = {
@@ -40,22 +40,29 @@ const BeerList = forwardRef<any, { activeTab: number }>(({ activeTab }, ref) => 
 
   useEffect(() => {
     if (activeTab === 0) {
+      // for loading feel
       setIsLoading(true);
-      getBeer()
-        .then((data) => {
-          setBeers([...beers, ...data.data]);
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          const lastChildElement = ref.current?.lastElementChild;
-          lastChildElement?.scrollIntoView({ behavior: 'smooth' });
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      setTimeout(() => {
+        getBeer()
+          .then((data) => {
+            setBeers([...beers, ...data.data]);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }, 500);
     }
   }, [activeTab, pagination]);
 
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    scrollRef?.current?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }, [beers]);
 
   useImperativeHandle(
     ref,
@@ -76,16 +83,20 @@ const BeerList = forwardRef<any, { activeTab: number }>(({ activeTab }, ref) => 
     setOpenForm(false);
   };
   return (
-    <Stack className={'mv-8'}>
+    <Stack
+      className={'mv-8'}
+      justifyContent={'center'}
+      alignItems={'center'}
+      style={{ position: 'relative' }}
+    >
+      {isLoading && <CircularProgress className={'spinner'} color='inherit' />}
       <Grid
         container
-        rowSpacing={1}
+        rowSpacing={2}
         columnSpacing={{ xs: 1, sm: 1, md: 2 }}
-        maxHeight={700}
-        ref={scrollRef}
-        overflow={'auto'}
+        className={isLoading ? 'op-blur' : ''}
       >
-        {beers?.map((beer,index) => {
+        {beers?.map((beer, index) => {
           return (
             <Grid key={`${beer.id}${index}`} item xs={12} sm={12} md={6} lg={6}>
               <BeerCard {...beer} />
@@ -93,8 +104,10 @@ const BeerList = forwardRef<any, { activeTab: number }>(({ activeTab }, ref) => 
           );
         })}
       </Grid>
+      <div ref={scrollRef}></div>
       {activeTab === 0 && (
         <Button
+          disabled={isLoading}
           onClick={() => {
             setPagination({
               ...pagination,

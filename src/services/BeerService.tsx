@@ -9,9 +9,10 @@ const BASE_URL = 'https://api.punkapi.com/v2/beers';
 export interface IBEER {
   id?: string;
   name: string;
-  tag_line: string;
+  tagline: string;
   description: string;
   image_url: string;
+  ingredients?: any[];
 }
 
 export const fetchBeer = async (pagination: IPAGINATION): Promise<AxiosResponse<IBEER[]>> => {

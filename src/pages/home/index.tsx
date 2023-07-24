@@ -32,6 +32,8 @@ const Home = () => {
             <Tab label='My Beer' />
           </Tabs>
           <Button
+            disabled={activetab === 0}
+            variant='contained'
             onClick={() => {
               if (listRef.current) {
                 listRef.current?.openModal();
