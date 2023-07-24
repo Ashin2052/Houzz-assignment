@@ -1,8 +1,9 @@
 import React from 'react';
+
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { Button, Stack, TextField, Typography } from '@mui/material';
 import { IBEER } from '../../services/BeerService';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 
 const validationSchema = yup.object({
   name: yup.string().nullable().min(5).required('Name is required'),

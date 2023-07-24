@@ -1,6 +1,7 @@
-import { IBEER } from '../../services/BeerService';
 import React, { FC } from 'react';
+
 import { Card, Grid, Stack } from '@mui/material';
+import { IBEER } from '../../services/BeerService';
 
 const BeerCard: FC<IBEER> = (beer: IBEER) => {
   return (

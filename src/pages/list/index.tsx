@@ -7,11 +7,11 @@ import React, {
   useState,
 } from 'react';
 
+import BeerForm from '../beer-form';
+import Box from '@mui/material/Box';
 import BeerCard from '../../components/card';
 import { Button, Grid, Modal, Stack } from '@mui/material';
 import { fetchBeer, IBEER, IPAGINATION } from '../../services/BeerService';
-import Box from '@mui/material/Box';
-import BeerForm from '../beer-form';
 
 const modalStyle = {
   position: 'absolute',

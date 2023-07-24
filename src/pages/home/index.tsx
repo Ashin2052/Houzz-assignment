@@ -1,7 +1,8 @@
 import { Button, Modal, Stack, Tab, Tabs } from '@mui/material';
-import Box from '@mui/material/Box';
 import React, { SyntheticEvent, useRef, useState } from 'react';
+
 import BeerList from '../list';
+import Box from '@mui/material/Box';
 
 const Home = () => {
   //could have used custom hooks for tab.
